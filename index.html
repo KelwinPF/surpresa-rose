@@ -10,13 +10,13 @@ body {
   height: 100vh;
   background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb);
   background-size: 600% 600%;
-  animation: gradient 10s ease infinite;
-  overflow: hidden;
+  animation: gradient 12s ease infinite;
   font-family: Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden;
 }
 
 @keyframes gradient {
@@ -37,11 +37,6 @@ button {
   background: #ff4d6d;
   color: white;
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-button:hover {
-  transform: scale(1.1);
 }
 
 .card {
@@ -62,7 +57,6 @@ button:hover {
 
 .text span {
   opacity: 0;
-  display: inline-block;
   animation: appear 0.05s forwards;
 }
 
@@ -72,7 +66,7 @@ button:hover {
 
 .heart {
   position: absolute;
-  font-size: 20px;
+  font-size: 18px;
   animation: fall linear infinite;
 }
 
@@ -87,7 +81,7 @@ button:hover {
 <body>
 
 <div class="start" id="start">
-  <h2>Tenho uma coisinha pra você...</h2>
+  <h2>Tenho algo pra você...</h2>
   <button onclick="iniciar()">Clique aqui ❤️</button>
 </div>
 
@@ -111,9 +105,6 @@ function iniciar() {
   document.getElementById("start").style.display = "none";
   document.getElementById("card").style.display = "block";
 
-  // abre música
-  window.open("https://www.youtube.com/watch?v=Oa_RSwwpPaA", "_blank");
-
   escreverTexto();
   coracoes();
 }
@@ -123,7 +114,7 @@ function escreverTexto() {
 
   mensagem.split("").forEach((letra, i) => {
     const span = document.createElement("span");
-    span.innerHTML = letra;
+    span.innerHTML = letra === "\n" ? "<br>" : letra;
     span.style.animationDelay = i * 0.03 + "s";
     container.appendChild(span);
   });
@@ -140,7 +131,7 @@ function coracoes() {
     document.body.appendChild(heart);
 
     setTimeout(() => heart.remove(), 5000);
-  }, 250);
+  }, 300);
 }
 </script>
 
