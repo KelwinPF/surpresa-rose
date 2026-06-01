@@ -17,7 +17,7 @@
       --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
       --radius-xl: 32px;
       --radius-lg: 24px;
-      --max-width: 1180px;
+      --max-width: 100%;
     }
 
     * {
@@ -84,9 +84,9 @@
     .frame {
       position: relative;
       z-index: 1;
-      width: min(100%, var(--max-width));
+      width: 100%;
       margin: 0 auto;
-      padding: 28px 20px 80px;
+      padding: 28px 28px 80px;
     }
 
     .topbar {
@@ -222,7 +222,7 @@
       font-size: 1.06rem;
       line-height: 1.85;
       color: rgba(255, 247, 244, 0.9);
-      max-width: 38rem;
+      max-width: none;
     }
 
     .hero-actions {
@@ -340,8 +340,8 @@
     .section-panel {
       padding: 34px;
       grid-column: 1 / -1;
-      width: min(100%, 820px);
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
     }
 
     .section-heading {
