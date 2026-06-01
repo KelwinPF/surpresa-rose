@@ -155,14 +155,13 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns: 1fr;
       gap: 24px;
       align-items: start;
       padding-top: 34px;
     }
 
     .hero-copy,
-    .hero-card,
     .section-panel,
     .closing-card,
     .modal-content {
@@ -177,6 +176,7 @@
       padding: 52px;
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
 
     .hero-copy::after {
@@ -261,14 +261,6 @@
       transform: translateY(-2px);
     }
 
-    .hero-card {
-      padding: 22px;
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 16px;
-      align-self: start;
-    }
-
     .hero-photo,
     .modal-media {
       position: relative;
@@ -332,8 +324,7 @@
     .hero-note p,
     .closing-card p,
     .gallery-caption,
-    .modal-copy p,
-    .detail-item p {
+    .modal-copy p {
       margin: 0;
       line-height: 1.8;
       color: rgba(255, 247, 244, 0.84);
@@ -348,11 +339,9 @@
 
     .section-panel {
       padding: 34px;
-      grid-column: span 7;
-    }
-
-    .section-panel.side {
-      grid-column: span 5;
+      grid-column: 1 / -1;
+      width: min(100%, 820px);
+      margin: 0 auto;
     }
 
     .section-heading {
@@ -372,49 +361,6 @@
       font-size: 1.03rem;
       line-height: 1.9;
       color: rgba(255, 247, 244, 0.92);
-    }
-
-    .quote-box {
-      display: grid;
-      gap: 16px;
-      padding: 28px;
-      border-radius: var(--radius-lg);
-      background: rgba(12, 8, 12, 0.36);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .quote-box blockquote {
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2rem, 3vw, 2.6rem);
-      line-height: 1.2;
-    }
-
-    .detail-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .detail-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 18px 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .detail-item span {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 142, 158, 0.18);
-      color: var(--gold);
-      flex-shrink: 0;
     }
 
     .gallery-section {
@@ -601,7 +547,6 @@
 
       .hero-copy,
       .section-panel,
-      .section-panel.side,
       .gallery-item.large,
       .gallery-item.medium,
       .gallery-item.small {
@@ -625,7 +570,6 @@
       }
 
       .hero-copy,
-      .hero-card,
       .section-panel,
       .closing-card {
         padding: 26px;
@@ -679,26 +623,6 @@
             <a class="ghost-button" href="#memorias">Ver nossas fotos</a>
           </div>
         </article>
-
-        <aside class="hero-card">
-          <div class="hero-photo" data-photo-wrapper>
-            <img src="fotos/01.jpg" alt="Vocês em um momento carinhoso" loading="eager">
-            <div class="hero-photo-fallback">
-              <div>
-                <strong>Foto principal</strong><br>
-                Coloque a primeira imagem em <strong>fotos/01.jpg</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-note">
-            <div class="brand-mark">✦</div>
-            <p>
-              <strong>Obrigado, Deus, pela vida dela.</strong><br>
-              Você não é só alguém que eu amo. Você é uma resposta boa da vida e um presente que eu agradeço todos os dias.
-            </p>
-          </div>
-        </aside>
       </section>
 
       <section class="grid-sections" id="mensagem">
@@ -727,44 +651,6 @@
             </p>
           </div>
         </article>
-
-        <aside class="section-panel side reveal">
-          <div class="quote-box">
-            <div class="eyebrow">Se eu falasse olhando pra você</div>
-            <blockquote>
-              "Eu te amo, te admiro de verdade e agradeço a Deus por ter colocado você no meu caminho."
-            </blockquote>
-            <p>
-              É simples, mas foi feito com carinho. Só pra você sentir um pouquinho do tamanho do que eu guardo no coração.
-            </p>
-          </div>
-
-          <div class="detail-list">
-            <div class="detail-item">
-              <span>01</span>
-              <div>
-                <strong>Você me faz bem</strong>
-                <p>Tem algo em você que acalma meu coração e deixa meus dias mais leves.</p>
-              </div>
-            </div>
-
-            <div class="detail-item">
-              <span>02</span>
-              <div>
-                <strong>Eu te admiro muito</strong>
-                <p>Eu admiro seu coração, sua fé, sua beleza e a mulher incrível que você é.</p>
-              </div>
-            </div>
-
-            <div class="detail-item">
-              <span>03</span>
-              <div>
-                <strong>Você é presente</strong>
-                <p>Quando eu penso em você, eu penso em gratidão. Ter você é um presente mesmo.</p>
-              </div>
-            </div>
-          </div>
-        </aside>
       </section>
 
       <section class="gallery-section reveal" id="memorias">
