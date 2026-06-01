@@ -164,7 +164,6 @@
     .hero-copy,
     .hero-card,
     .section-panel,
-    .reason-card,
     .closing-card,
     .modal-content {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.07));
@@ -331,7 +330,6 @@
     }
 
     .hero-note p,
-    .reason-card p,
     .closing-card p,
     .gallery-caption,
     .modal-copy p,
@@ -489,30 +487,6 @@
       font-size: 2rem;
     }
 
-    .reasons-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .reason-card {
-      padding: 26px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .reason-card h3 {
-      font-size: 2rem;
-    }
-
-    .reason-number {
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
     .closing-card {
       margin-top: 24px;
       padding: 42px;
@@ -634,10 +608,6 @@
         grid-column: span 12;
       }
 
-      .reasons-grid {
-        grid-template-columns: 1fr;
-      }
-
       .topbar {
         border-radius: 28px;
       }
@@ -690,7 +660,6 @@
       <nav aria-label="Navegacao principal">
         <a href="#mensagem">Mensagem</a>
         <a href="#memorias">Memorias</a>
-        <a href="#admiracao">Admiracao</a>
         <a href="#final">Final</a>
       </nav>
     </header>
@@ -862,39 +831,6 @@
               <div class="gallery-caption">Você é uma das provas mais bonitas de que Deus foi bom comigo.</div>
             </div>
           </button>
-        </div>
-      </section>
-
-      <section class="reveal" id="admiracao">
-        <div class="section-heading" style="margin-top: 28px;">
-          <span>O que eu mais admiro em você</span>
-          <h2>Três coisas que sempre vêm na minha cabeça quando penso em você.</h2>
-        </div>
-
-        <div class="reasons-grid">
-          <article class="reason-card">
-            <div class="reason-number">Admiração 01</div>
-            <h3>Seu jeito</h3>
-            <p>
-              Você tem um jeito lindo de ser. Doce, forte, leve e com um coração que faz bem pra quem está por perto.
-            </p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-number">Admiração 02</div>
-            <h3>Sua beleza</h3>
-            <p>
-              Sua beleza me chama atenção, claro. Mas o que mais me prende mesmo é a luz que você carrega por dentro.
-            </p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-number">Admiração 03</div>
-            <h3>Sua fe</h3>
-            <p>
-              Eu amo saber que a nossa história pode ser vivida com Deus no centro, com gratidão e com propósito.
-            </p>
-          </article>
         </div>
       </section>
 
