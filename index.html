@@ -1,139 +1,2057 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Para Rose ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Rose</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #fff7f4;
+      --muted: #f6d8d1;
+      --accent: #ff8e9e;
+      --accent-strong: #ff5d74;
+      --gold: #f2c98a;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max-width: 1180px;
+    }
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb);
-  background-size: 600% 600%;
-  animation: gradient 12s ease infinite;
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  overflow: hidden;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.start {
-  text-align: center;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 126, 145, 0.18), transparent 34%),
+        radial-gradient(circle at 80% 15%, rgba(242, 201, 138, 0.16), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(255, 126, 145, 0.14), transparent 28%),
+        linear-gradient(145deg, #120c13 0%, #21101b 48%, #120c13 100%);
+      overflow-x: hidden;
+    }
 
-button {
-  padding: 15px 30px;
-  border: none;
-  border-radius: 12px;
-  font-size: 18px;
-  background: #ff4d6d;
-  color: white;
-  cursor: pointer;
-}
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
 
-.card {
-  display: none;
-  background: rgba(255,255,255,0.15);
-  padding: 40px;
-  border-radius: 20px;
-  max-width: 500px;
-  backdrop-filter: blur(10px);
-  text-align: center;
-  animation: fadeIn 2s ease;
-}
+    body::before {
+      top: -12rem;
+      left: -10rem;
+      background: rgba(255, 93, 116, 0.35);
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px);}
-  to { opacity: 1; transform: translateY(0);}
-}
+    body::after {
+      right: -8rem;
+      bottom: -10rem;
+      background: rgba(242, 201, 138, 0.25);
+    }
 
-.text span {
-  opacity: 0;
-  animation: appear 0.05s forwards;
-}
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-@keyframes appear {
-  to { opacity: 1; }
-}
+    .floating-heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 200, 208, 0.3);
+      animation: floatUp linear forwards;
+    }
 
-.heart {
-  position: absolute;
-  font-size: 18px;
-  animation: fall linear infinite;
-}
+    .frame {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
 
-@keyframes fall {
-  to {
-    transform: translateY(100vh);
-  }
-}
-</style>
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(23, 12, 21, 0.54);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 18px;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 142, 158, 0.95), rgba(255, 93, 116, 0.68));
+      color: white;
+      box-shadow: 0 12px 30px rgba(255, 93, 116, 0.32);
+      flex-shrink: 0;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .topbar a,
+    .button,
+    .ghost-button {
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .topbar a {
+      padding: 10px 16px;
+    }
+
+    .topbar a:hover,
+    .topbar a:focus-visible {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 24px;
+      align-items: start;
+      padding-top: 34px;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-panel,
+    .reason-card,
+    .closing-card,
+    .modal-content {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.07));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -110px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.24), transparent 60%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(3.8rem, 8vw, 6.8rem);
+    }
+
+    .hero-copy p {
+      margin: 22px 0 0;
+      font-size: 1.06rem;
+      line-height: 1.85;
+      color: rgba(255, 247, 244, 0.9);
+      max-width: 38rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button,
+    .ghost-button {
+      border: 0;
+      padding: 15px 22px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .button {
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 16px 34px rgba(255, 93, 116, 0.34);
+    }
+
+    .ghost-button {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .ghost-button:hover,
+    .ghost-button:focus-visible,
+    .gallery-item:hover,
+    .gallery-item:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      align-self: start;
+    }
+
+    .hero-photo,
+    .modal-media {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(160deg, rgba(255, 142, 158, 0.22), rgba(22, 15, 22, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-photo {
+      aspect-ratio: 4 / 5;
+      max-height: 360px;
+    }
+
+    .hero-photo img,
+    .gallery-item img,
+    .modal-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-fallback,
+    .gallery-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: rgba(255, 247, 244, 0.86);
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.1), rgba(255, 142, 158, 0.05)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0 12px, rgba(255, 255, 255, 0.07) 12px 24px);
+    }
+
+    [data-photo-wrapper].is-loaded .hero-photo-fallback,
+    [data-photo-wrapper].is-loaded .gallery-fallback {
+      display: none;
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      background: rgba(14, 8, 13, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-note strong,
+    .section-heading span,
+    .closing-card strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .hero-note p,
+    .reason-card p,
+    .closing-card p,
+    .gallery-caption,
+    .modal-copy p,
+    .detail-item p {
+      margin: 0;
+      line-height: 1.8;
+      color: rgba(255, 247, 244, 0.84);
+    }
+
+    .grid-sections {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .section-panel {
+      padding: 34px;
+      grid-column: span 7;
+    }
+
+    .section-panel.side {
+      grid-column: span 5;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+    }
+
+    .love-letter {
+      display: grid;
+      gap: 18px;
+      font-size: 1.03rem;
+      line-height: 1.9;
+      color: rgba(255, 247, 244, 0.92);
+    }
+
+    .quote-box {
+      display: grid;
+      gap: 16px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: rgba(12, 8, 12, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quote-box blockquote {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .detail-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .detail-item span {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 142, 158, 0.18);
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .gallery-section {
+      margin-top: 24px;
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border: 0;
+      padding: 0;
+      color: inherit;
+      text-align: left;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 28px;
+      background: transparent;
+      box-shadow: var(--shadow);
+      min-height: 220px;
+    }
+
+    .gallery-item.large {
+      grid-column: span 4;
+      min-height: 250px;
+    }
+
+    .gallery-item.medium {
+      grid-column: span 4;
+      min-height: 250px;
+    }
+
+    .gallery-item.small {
+      grid-column: span 4;
+      min-height: 230px;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 26%, rgba(16, 8, 14, 0.88) 100%);
+      opacity: 0.96;
+    }
+
+    .gallery-meta {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      z-index: 1;
+      display: grid;
+      gap: 6px;
+    }
+
+    .gallery-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .reason-card {
+      padding: 26px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .reason-card h3 {
+      font-size: 2rem;
+    }
+
+    .reason-number {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .closing-card {
+      margin-top: 24px;
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-card::before {
+      content: "";
+      position: absolute;
+      inset: -10% auto auto -5%;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 142, 158, 0.18), transparent 68%);
+    }
+
+    .closing-card h2 {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 26px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(11, 6, 10, 0.78);
+      z-index: 30;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(100%, 980px);
+      padding: 18px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+    }
+
+    .modal-copy {
+      padding: 18px 12px 18px 6px;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .modal-copy h3 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text);
+      background: rgba(13, 9, 13, 0.72);
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translate3d(0, 0, 0) scale(0.9);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate3d(var(--drift), -120vh, 0) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .section-panel,
+      .section-panel.side,
+      .gallery-item.large,
+      .gallery-item.medium,
+      .gallery-item.small {
+        grid-column: span 12;
+      }
+
+      .reasons-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        border-radius: 28px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .frame {
+        padding: 18px 14px 64px;
+      }
+
+      .topbar {
+        padding: 16px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-panel,
+      .closing-card {
+        padding: 26px;
+      }
+
+      .hero-photo,
+      .modal-media,
+      .gallery-item.large,
+      .gallery-item.medium,
+      .gallery-item.small {
+        min-height: 240px;
+      }
+
+      .hero-actions,
+      .gallery-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="floating-hearts" aria-hidden="true" id="floatingHearts"></div>
 
-<div class="start" id="start">
-  <h2>Tenho algo pra você...</h2>
-  <button onclick="iniciar()">Clique aqui ❤️</button>
-</div>
+  <div class="frame">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">❤</div>
+        <div>Para Rose, meu presente</div>
+      </div>
 
-<div class="card" id="card">
-  <h1>Rose ❤️</h1>
-  <p class="text" id="texto"></p>
-</div>
+      <nav aria-label="Navegacao principal">
+        <a href="#mensagem">Mensagem</a>
+        <a href="#memorias">Memorias</a>
+        <a href="#admiracao">Admiracao</a>
+        <a href="#final">Final</a>
+      </nav>
+    </header>
 
-<script>
-const mensagem = `Eu pensei em você agora...
+    <main>
+      <section class="hero reveal">
+        <article class="hero-copy">
+          <div class="eyebrow">Só um jeito bonito de te lembrar disso</div>
+          <h1>Rose,<br>eu olho pra você e só consigo agradecer a Deus.</h1>
+          <p>
+            Você deixou meus dias mais leves, mais bonitos e muito mais felizes.
+            Te amar é sentir paz, carinho e aquela certeza boa de que você é um presente na minha vida.
+          </p>
 
-E percebi que tem algo em você que me traz uma paz absurda.
+          <div class="hero-actions">
+            <a class="button" href="#mensagem">Ler o que eu sinto</a>
+            <a class="ghost-button" href="#memorias">Ver nossas fotos</a>
+          </div>
+        </article>
 
-Estar com você é leve... é bom... é diferente.
+        <aside class="hero-card">
+          <div class="hero-photo" data-photo-wrapper>
+            <img src="fotos/01.jpg" alt="Vocês em um momento carinhoso" loading="eager">
+            <div class="hero-photo-fallback">
+              <div>
+                <strong>Foto principal</strong><br>
+                Coloque a primeira imagem em <strong>fotos/01.jpg</strong>
+              </div>
+            </div>
+          </div>
 
-E só de você ser quem é, já me inspira a querer ser melhor todos os dias.
+          <div class="hero-note">
+            <div class="brand-mark">✦</div>
+            <p>
+              <strong>Obrigado, Deus, pela vida dela.</strong><br>
+              Você não é só alguém que eu amo. Você é uma resposta boa da vida e um presente que eu agradeço todos os dias.
+            </p>
+          </div>
+        </aside>
+      </section>
 
-Você é muito especial pra mim. 💕`;
+      <section class="grid-sections" id="mensagem">
+        <article class="section-panel reveal">
+          <div class="section-heading">
+            <span>Minha mensagem</span>
+            <h2>Se eu fosse resumir tudo, eu diria que ter você na minha vida é motivo de gratidão.</h2>
+          </div>
 
-function iniciar() {
-  document.getElementById("start").style.display = "none";
-  document.getElementById("card").style.display = "block";
+          <div class="love-letter">
+            <p>
+              Meu amor, eu fiz isso aqui só pra te lembrar de uma coisa que eu sinto todos os dias: eu amo muito você.
+              Amo estar com você, amo o jeito como você deixa tudo mais leve e amo a paz que eu sinto quando estou do seu lado.
+            </p>
+            <p>
+              Eu admiro demais quem você é. Seu jeito, sua força, sua doçura, sua beleza e a forma como você carrega tanta luz sem nem perceber.
+              Você tem uma presença que faz bem, daquelas que a gente sente vontade de guardar pra sempre.
+            </p>
+            <p>
+              Eu agradeço muito a Deus pela sua vida, de verdade. Porque olhar pra você e poder te chamar de minha namorada
+              é uma das coisas mais bonitas que já me aconteceram.
+            </p>
+            <p>
+              Você é presente, é cuidado, é motivo de sorriso e é uma das partes mais bonitas da minha história.
+              E eu quero continuar te escolhendo com carinho, com verdade e com esse amor bonito que eu sinto por você.
+            </p>
+          </div>
+        </article>
 
-  escreverTexto();
-  coracoes();
-}
+        <aside class="section-panel side reveal">
+          <div class="quote-box">
+            <div class="eyebrow">Se eu falasse olhando pra você</div>
+            <blockquote>
+              "Eu te amo, te admiro de verdade e agradeço a Deus por ter colocado você no meu caminho."
+            </blockquote>
+            <p>
+              É simples, mas foi feito com carinho. Só pra você sentir um pouquinho do tamanho do que eu guardo no coração.
+            </p>
+          </div>
 
-function escreverTexto() {
-  const container = document.getElementById("texto");
+          <div class="detail-list">
+            <div class="detail-item">
+              <span>01</span>
+              <div>
+                <strong>Você me faz bem</strong>
+                <p>Tem algo em você que acalma meu coração e deixa meus dias mais leves.</p>
+              </div>
+            </div>
 
-  mensagem.split("").forEach((letra, i) => {
-    const span = document.createElement("span");
-    span.innerHTML = letra === "\n" ? "<br>" : letra;
-    span.style.animationDelay = i * 0.03 + "s";
-    container.appendChild(span);
-  });
-}
+            <div class="detail-item">
+              <span>02</span>
+              <div>
+                <strong>Eu te admiro muito</strong>
+                <p>Eu admiro seu coração, sua fé, sua beleza e a mulher incrível que você é.</p>
+              </div>
+            </div>
 
-function coracoes() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            <div class="detail-item">
+              <span>03</span>
+              <div>
+                <strong>Você é presente</strong>
+                <p>Quando eu penso em você, eu penso em gratidão. Ter você é um presente mesmo.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-    document.body.appendChild(heart);
+      <section class="gallery-section reveal" id="memorias">
+        <div class="gallery-header">
+          <div class="section-heading">
+            <span>Nossas memórias</span>
+            <h2>Alguns pedacinhos da felicidade que eu sinto quando estou com você.</h2>
+          </div>
+          <p class="gallery-caption">Fotos menores, mas cheias de significado.</p>
+        </div>
 
-    setTimeout(() => heart.remove(), 5000);
-  }, 300);
-}
-</script>
+        <div class="gallery-grid">
+          <button class="gallery-item large" type="button" data-photo-wrapper data-title="Seu abraço é meu lugar favorito" data-caption="Tem foto que parece carinho, e essa aqui é exatamente isso." data-image="fotos/01.jpg">
+            <img src="fotos/01.jpg" alt="Momento carinhoso do casal" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/01.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Seu abraço é meu lugar favorito</div>
+              <div class="gallery-caption">Tem foto que parece carinho, e essa aqui é exatamente isso.</div>
+            </div>
+          </button>
 
+          <button class="gallery-item medium" type="button" data-photo-wrapper data-title="Seu sorriso me desmonta" data-caption="Toda vez que você sorri assim, eu lembro o quanto sou feliz por ter você." data-image="fotos/02.jpg">
+            <img src="fotos/02.jpg" alt="Selfie sorrindo juntos" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/02.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Seu sorriso me desmonta</div>
+              <div class="gallery-caption">Toda vez que você sorri assim, eu lembro o quanto sou feliz por ter você.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Você deixa tudo mais bonito" data-caption="Até os momentos simples ficam especiais quando eu estou com você." data-image="fotos/03.jpg">
+            <img src="fotos/03.jpg" alt="Casal em luz quente e acolhedora" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/03.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Você deixa tudo mais bonito</div>
+              <div class="gallery-caption">Até os momentos simples ficam especiais quando eu estou com você.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Com você, qualquer lugar fica bom" data-caption="O lugar nunca é o mais importante. Você sempre é." data-image="fotos/04.jpg">
+            <img src="fotos/04.jpg" alt="Mais uma memória feliz do casal" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/04.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Com você, qualquer lugar fica bom</div>
+              <div class="gallery-caption">O lugar nunca é o mais importante. Você sempre é.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Presente de Deus, sem dúvida" data-caption="Você é uma das provas mais bonitas de que Deus foi bom comigo." data-image="fotos/05.jpg">
+            <img src="fotos/05.jpg" alt="Registro especial do casal juntos" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/05.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Presente de Deus, sem dúvida</div>
+              <div class="gallery-caption">Você é uma das provas mais bonitas de que Deus foi bom comigo.</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="reveal" id="admiracao">
+        <div class="section-heading" style="margin-top: 28px;">
+          <span>O que eu mais admiro em você</span>
+          <h2>Três coisas que sempre vêm na minha cabeça quando penso em você.</h2>
+        </div>
+
+        <div class="reasons-grid">
+          <article class="reason-card">
+            <div class="reason-number">Admiração 01</div>
+            <h3>Seu jeito</h3>
+            <p>
+              Você tem um jeito lindo de ser. Doce, forte, leve e com um coração que faz bem pra quem está por perto.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-number">Admiração 02</div>
+            <h3>Sua beleza</h3>
+            <p>
+              Sua beleza me chama atenção, claro. Mas o que mais me prende mesmo é a luz que você carrega por dentro.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-number">Admiração 03</div>
+            <h3>Sua fe</h3>
+            <p>
+              Eu amo saber que a nossa história pode ser vivida com Deus no centro, com gratidão e com propósito.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing-card reveal" id="final">
+        <div class="eyebrow">Pra você guardar com carinho</div>
+        <h2>Se algum dia você duvidar, volta aqui e lembra: eu te amo, te admiro e agradeço a Deus pela sua vida.</h2>
+        <p>
+          Obrigado por ser essa pessoa tão linda, por dentro e por fora. Obrigado por cada conversa, cada sorriso, cada momento e por tudo o que você desperta em mim.
+          Eu amo você de um jeito sincero, tranquilo e cheio de verdade.
+        </p>
+        <p>
+          Que Deus continue cuidando de você, abençoando a sua vida e me dando o privilégio de continuar vivendo momentos lindos ao seu lado.
+        </p>
+        <div class="signature">Com todo o meu amor.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="photoModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Fechar foto ampliada">✕</button>
+      <div class="modal-media" data-photo-wrapper>
+        <img id="modalImage" src="" alt="Foto ampliada">
+        <div class="hero-photo-fallback" id="modalFallback">
+          <div>Adicione a imagem correspondente na pasta <strong>fotos/</strong></div>
+        </div>
+      </div>
+      <div class="modal-copy">
+        <div class="eyebrow">Memoria especial</div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalCaption"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    const photoWrappers = document.querySelectorAll('[data-photo-wrapper]');
+    const floatingHearts = document.getElementById('floatingHearts');
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalFallback = document.getElementById('modalFallback');
+    const closeModal = document.getElementById('closeModal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    photoWrappers.forEach((wrapper) => {
+      const image = wrapper.querySelector('img');
+      if (!image) {
+        return;
+      }
+
+      image.addEventListener('load', () => {
+        wrapper.classList.add('is-loaded');
+      });
+
+      image.addEventListener('error', () => {
+        wrapper.classList.remove('is-loaded');
+      });
+
+      if (image.complete && image.naturalWidth > 0) {
+        wrapper.classList.add('is-loaded');
+      }
+    });
+
+    document.querySelectorAll('.gallery-item').forEach((button) => {
+      button.addEventListener('click', () => {
+        modalTitle.textContent = button.dataset.title || '';
+        modalCaption.textContent = button.dataset.caption || '';
+        modalImage.src = button.dataset.image || '';
+        modalImage.alt = button.querySelector('img')?.alt || 'Foto do casal';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalImage.addEventListener('load', () => {
+      modalFallback.style.display = 'none';
+    });
+
+    modalImage.addEventListener('error', () => {
+      modalFallback.style.display = 'grid';
+    });
+
+    closeModal.addEventListener('click', closePhotoModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closePhotoModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closePhotoModal();
+      }
+    });
+
+    function closePhotoModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      modalImage.src = '';
+      modalFallback.style.display = 'grid';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.className = 'floating-heart';
+      heart.textContent = '❤';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.fontSize = `${Math.random() * 14 + 12}px`;
+      heart.style.animationDuration = `${Math.random() * 5 + 7}s`;
+      heart.style.setProperty('--drift', `${(Math.random() - 0.5) * 90}px`);
+      floatingHearts.appendChild(heart);
+      heart.addEventListener('animationend', () => heart.remove());
+    }
+
+    setInterval(createHeart, 1200);
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Rose</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #fff7f4;
+      --muted: #f6d8d1;
+      --accent: #ff8e9e;
+      --accent-strong: #ff5d74;
+      --gold: #f2c98a;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 126, 145, 0.18), transparent 34%),
+        radial-gradient(circle at 80% 15%, rgba(242, 201, 138, 0.16), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(255, 126, 145, 0.14), transparent 28%),
+        linear-gradient(145deg, #120c13 0%, #21101b 48%, #120c13 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    body::before {
+      top: -12rem;
+      left: -10rem;
+      background: rgba(255, 93, 116, 0.35);
+    }
+
+    body::after {
+      right: -8rem;
+      bottom: -10rem;
+      background: rgba(242, 201, 138, 0.25);
+    }
+
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 200, 208, 0.3);
+      animation: floatUp linear forwards;
+    }
+
+    .frame {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(23, 12, 21, 0.54);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 18px;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 142, 158, 0.95), rgba(255, 93, 116, 0.68));
+      color: white;
+      box-shadow: 0 12px 30px rgba(255, 93, 116, 0.32);
+      flex-shrink: 0;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .topbar a,
+    .button,
+    .ghost-button {
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .topbar a {
+      color: var(--muted);
+      padding: 10px 16px;
+    }
+
+    .topbar a:hover,
+    .topbar a:focus-visible {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: stretch;
+      padding-top: 34px;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-panel,
+    .reason-card,
+    .closing-card,
+    .modal-content {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.07));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -110px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.24), transparent 60%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(3.8rem, 8vw, 6.8rem);
+    }
+
+    .hero-copy p {
+      margin: 22px 0 0;
+      font-size: 1.06rem;
+      line-height: 1.85;
+      color: rgba(255, 247, 244, 0.9);
+      max-width: 38rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button,
+    .ghost-button {
+      border: 0;
+      padding: 15px 22px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .button {
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 16px 34px rgba(255, 93, 116, 0.34);
+    }
+
+    .ghost-button {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .ghost-button:hover,
+    .ghost-button:focus-visible,
+    .gallery-item:hover,
+    .gallery-item:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      padding: 26px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 18px;
+      min-height: 100%;
+    }
+
+    .hero-photo,
+    .modal-media {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(160deg, rgba(255, 142, 158, 0.22), rgba(22, 15, 22, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-photo img,
+    .gallery-item img,
+    .modal-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-fallback,
+    .gallery-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: rgba(255, 247, 244, 0.86);
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.1), rgba(255, 142, 158, 0.05)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0 12px, rgba(255, 255, 255, 0.07) 12px 24px);
+    }
+
+    [data-photo-wrapper].is-loaded .hero-photo-fallback,
+    [data-photo-wrapper].is-loaded .gallery-fallback {
+      display: none;
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      background: rgba(14, 8, 13, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-note strong,
+    .section-heading span {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .hero-note p,
+    .reason-card p,
+    .closing-card p,
+    .gallery-caption,
+    .modal-copy p,
+    .detail-item p {
+      margin: 0;
+      line-height: 1.8;
+      color: rgba(255, 247, 244, 0.84);
+    }
+
+    .grid-sections {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .section-panel {
+      padding: 34px;
+      grid-column: span 7;
+    }
+
+    .section-panel.side {
+      grid-column: span 5;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+    }
+
+    .love-letter {
+      display: grid;
+      gap: 18px;
+      font-size: 1.03rem;
+      line-height: 1.9;
+      color: rgba(255, 247, 244, 0.92);
+    }
+
+    .quote-box {
+      display: grid;
+      gap: 16px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: rgba(12, 8, 12, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quote-box blockquote {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .detail-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .detail-item span {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 142, 158, 0.18);
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .gallery-section {
+      margin-top: 24px;
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border: 0;
+      padding: 0;
+      color: inherit;
+      text-align: left;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 28px;
+      background: transparent;
+      box-shadow: var(--shadow);
+      min-height: 260px;
+    }
+
+    .gallery-item.large {
+      grid-column: span 7;
+      min-height: 380px;
+    }
+
+    .gallery-item.medium {
+      grid-column: span 5;
+      min-height: 380px;
+    }
+
+    .gallery-item.small {
+      grid-column: span 4;
+      min-height: 280px;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 26%, rgba(16, 8, 14, 0.88) 100%);
+      opacity: 0.96;
+    }
+
+    .gallery-meta {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      z-index: 1;
+      display: grid;
+      gap: 6px;
+    }
+
+    .gallery-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .reason-card {
+      padding: 26px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .reason-card h3 {
+      font-size: 2rem;
+    }
+
+    .reason-number {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .closing-card {
+      margin-top: 24px;
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-card::before {
+      content: "";
+      position: absolute;
+      inset: -10% auto auto -5%;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 142, 158, 0.18), transparent 68%);
+    }
+
+    .closing-card h2 {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 26px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(11, 6, 10, 0.78);
+      z-index: 30;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(100%, 980px);
+      padding: 18px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+    }
+
+    .modal-copy {
+      padding: 18px 12px 18px 6px;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .modal-copy h3 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text);
+      background: rgba(13, 9, 13, 0.72);
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translate3d(0, 0, 0) scale(0.9);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate3d(var(--drift), -120vh, 0) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .section-panel,
+      .section-panel.side,
+      .gallery-item.large,
+      .gallery-item.medium,
+      .gallery-item.small {
+        grid-column: span 12;
+      }
+
+      .reasons-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        border-radius: 28px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .frame {
+        padding: 18px 14px 64px;
+      }
+
+      .topbar {
+        padding: 16px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-panel,
+      .closing-card {
+        padding: 26px;
+      }
+
+      .hero-photo,
+      .modal-media,
+      .gallery-item.large,
+      .gallery-item.medium,
+      .gallery-item.small {
+        min-height: 300px;
+      }
+
+      .hero-actions,
+      .gallery-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" aria-hidden="true" id="floatingHearts"></div>
+
+  <div class="frame">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">❤</div>
+        <div>Para Rose, meu presente</div>
+      </div>
+
+      <nav aria-label="Navegacao principal">
+        <a href="#mensagem">Mensagem</a>
+        <a href="#memorias">Memorias</a>
+        <a href="#admiracao">Admiracao</a>
+        <a href="#final">Final</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero reveal">
+        <article class="hero-copy">
+          <div class="eyebrow">Um lembrete do quanto eu te amo</div>
+          <h1>Rose,<br>voce e uma das coisas mais lindas que Deus colocou na minha vida.</h1>
+          <p>
+            Entre tantos dias comuns, voce virou a parte que faz tudo ganhar mais cor, mais calma e mais sentido.
+            Amar voce e enxergar cuidado, beleza, fe e verdade no mesmo lugar.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#mensagem">Ler minha mensagem</a>
+            <a class="ghost-button" href="#memorias">Ver nossas fotos</a>
+          </div>
+        </article>
+
+        <aside class="hero-card">
+          <div class="hero-photo" data-photo-wrapper>
+            <img src="fotos/01.jpg" alt="Voce recebendo um beijo carinhoso" loading="eager">
+            <div class="hero-photo-fallback">
+              <div>
+                <strong>Foto principal</strong><br>
+                Coloque a primeira imagem em <strong>fotos/01.jpg</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-note">
+            <div class="brand-mark">✦</div>
+            <p>
+              <strong>Obrigado, Deus, pela vida dela.</strong><br>
+              Voce nao e apenas alguem que eu amo. Voce e um presente que eu recebo com gratidao todos os dias.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="grid-sections" id="mensagem">
+        <article class="section-panel reveal">
+          <div class="section-heading">
+            <span>Minha declaracao</span>
+            <h2>Se eu pudesse resumir, eu diria que a sua existencia me faz agradecer.</h2>
+          </div>
+
+          <div class="love-letter">
+            <p>
+              Meu amor, eu queria que esta pagina te abracasse do jeito que meu coracao abraca o seu nome.
+              Voce chegou na minha vida trazendo leveza, trazendo alegria e me lembrando que o amor verdadeiro tem paz,
+              tem admiracao e tem cuidado em cada detalhe.
+            </p>
+            <p>
+              Eu amo o seu jeito, a sua forca, a sua delicadeza, a forma como voce sorri e ilumina tudo ao redor.
+              Amo a mulher incrivel que voce e, e admiro muito a pessoa linda, inteligente e sensivel que Deus formou em voce.
+            </p>
+            <p>
+              Obrigado por existir. Obrigado por ser essa presenca tao especial na minha vida. Eu agradeco a Deus por voce,
+              porque te enxergar como minha namorada e uma das maiores provas de que Ele foi bondoso comigo.
+            </p>
+            <p>
+              Voce e presente, resposta de oracao, motivo de sorriso e uma das partes mais bonitas da minha historia.
+              E eu quero seguir te amando com intencao, carinho, respeito e a mesma certeza de que te escolher e uma alegria.
+            </p>
+          </div>
+        </article>
+
+        <aside class="section-panel side reveal">
+          <div class="quote-box">
+            <div class="eyebrow">Em poucas palavras</div>
+            <blockquote>
+              "Eu amo quem voce e, admiro o que voce carrega e agradeco a Deus por ter colocado voce no meu caminho."
+            </blockquote>
+            <p>
+              Este site e pequeno perto do que eu sinto, mas foi feito para te lembrar do que mora no meu coracao.
+            </p>
+          </div>
+
+          <div class="detail-list">
+            <div class="detail-item">
+              <span>01</span>
+              <div>
+                <strong>Voce me faz bem</strong>
+                <p>Sua presenca tem uma paz que acalma meus dias e deixa tudo mais leve.</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span>02</span>
+              <div>
+                <strong>Eu te admiro muito</strong>
+                <p>Admiro seu coracao, sua beleza, sua fe e a mulher maravilhosa que voce esta se tornando.</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span>03</span>
+              <div>
+                <strong>Voce e presente</strong>
+                <p>Quando penso em voce, penso em gratidao. Porque ter voce e receber um presente todos os dias.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="gallery-section reveal" id="memorias">
+        <div class="gallery-header">
+          <div class="section-heading">
+            <span>Nossas memorias</span>
+            <h2>Momentos que guardam exatamente o que eu sinto quando estou com voce.</h2>
+          </div>
+          <p class="gallery-caption">Clique em uma foto para ampliar.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-item large" type="button" data-photo-wrapper data-title="Seu abraco e casa" data-caption="Aquele carinho que transforma qualquer lugar em paz." data-image="fotos/01.jpg">
+            <img src="fotos/01.jpg" alt="Momento carinhoso do casal" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/01.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Seu abraco e casa</div>
+              <div class="gallery-caption">Aquele carinho que transforma qualquer lugar em paz.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item medium" type="button" data-photo-wrapper data-title="Seu sorriso me ganha" data-caption="Seu sorriso sempre parece um motivo novo para agradecer." data-image="fotos/02.jpg">
+            <img src="fotos/02.jpg" alt="Selfie sorrindo juntos" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/02.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Seu sorriso me ganha</div>
+              <div class="gallery-caption">Seu sorriso sempre parece um motivo novo para agradecer.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Voce ilumina meus dias" data-caption="Mesmo nos dias comuns, voce coloca brilho em tudo." data-image="fotos/03.jpg">
+            <img src="fotos/03.jpg" alt="Casal em luz quente e acolhedora" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/03.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Voce ilumina meus dias</div>
+              <div class="gallery-caption">Mesmo nos dias comuns, voce coloca brilho em tudo.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Meu lugar favorito" data-caption="Nao importa o lugar, se e com voce eu ja estou bem." data-image="fotos/04.jpg">
+            <img src="fotos/04.jpg" alt="Mais uma memoria feliz do casal" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/04.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Meu lugar favorito</div>
+              <div class="gallery-caption">Nao importa o lugar, se e com voce eu ja estou bem.</div>
+            </div>
+          </button>
+
+          <button class="gallery-item small" type="button" data-photo-wrapper data-title="Presente de Deus" data-caption="Olhar para voce e lembrar diariamente da bondade de Deus." data-image="fotos/05.jpg">
+            <img src="fotos/05.jpg" alt="Registro especial do casal juntos" loading="lazy">
+            <div class="gallery-fallback">
+              <div>Adicione esta foto em <strong>fotos/05.jpg</strong></div>
+            </div>
+            <div class="gallery-meta">
+              <div class="gallery-title">Presente de Deus</div>
+              <div class="gallery-caption">Olhar para voce e lembrar diariamente da bondade de Deus.</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="reveal" id="admiracao">
+        <div class="section-heading" style="margin-top: 28px;">
+          <span>O que eu admiro em voce</span>
+          <h2>Tres coisas que eu penso e sinto com muita verdade.</h2>
+        </div>
+
+        <div class="reasons-grid">
+          <article class="reason-card">
+            <div class="reason-number">Admiracao 01</div>
+            <h3>Sua essencia</h3>
+            <p>
+              Voce tem um jeito lindo de existir. Tem docura, coragem e um coracao que faz bem para quem esta perto.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-number">Admiracao 02</div>
+            <h3>Sua beleza</h3>
+            <p>
+              Sua beleza me encanta, mas o que mais me prende e a luz que voce carrega por dentro.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-number">Admiracao 03</div>
+            <h3>Sua fe</h3>
+            <p>
+              Eu amo saber que nossa historia pode ser vivida com Deus no centro, com gratidao e com proposito.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing-card reveal" id="final">
+        <div class="eyebrow">Para guardar no coracao</div>
+        <h2>Se um dia voce esquecer, volta aqui e lembra: eu te amo, te admiro e agradeco a Deus por voce.</h2>
+        <p>
+          Obrigado por ser a pessoa linda que voce e. Obrigado por cada sorriso, cada conversa, cada momento e por tudo o que
+          sua vida representa para mim. Eu te amo de um jeito sincero, com gratidao e com a alegria de poder chamar voce de meu amor.
+        </p>
+        <p>
+          Que Deus continue cuidando de voce, derramando favor sobre a sua vida e me dando o privilegio de celebrar quem voce e,
+          hoje e nos proximos capitulos da nossa historia.
+        </p>
+        <div class="signature">Com amor, sempre.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="photoModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Fechar foto ampliada">✕</button>
+      <div class="modal-media" data-photo-wrapper>
+        <img id="modalImage" src="" alt="Foto ampliada">
+        <div class="hero-photo-fallback" id="modalFallback">
+          <div>Adicione a imagem correspondente na pasta <strong>fotos/</strong></div>
+        </div>
+      </div>
+      <div class="modal-copy">
+        <div class="eyebrow">Memoria especial</div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalCaption"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    const photoWrappers = document.querySelectorAll('[data-photo-wrapper]');
+    const floatingHearts = document.getElementById('floatingHearts');
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalFallback = document.getElementById('modalFallback');
+    const closeModal = document.getElementById('closeModal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    photoWrappers.forEach((wrapper) => {
+      const image = wrapper.querySelector('img');
+      if (!image) {
+        return;
+      }
+
+      image.addEventListener('load', () => {
+        wrapper.classList.add('is-loaded');
+      });
+
+      image.addEventListener('error', () => {
+        wrapper.classList.remove('is-loaded');
+      });
+
+      if (image.complete && image.naturalWidth > 0) {
+        wrapper.classList.add('is-loaded');
+      }
+    });
+
+    document.querySelectorAll('.gallery-item').forEach((button) => {
+      button.addEventListener('click', () => {
+        modalTitle.textContent = button.dataset.title || '';
+        modalCaption.textContent = button.dataset.caption || '';
+        modalImage.src = button.dataset.image || '';
+        modalImage.alt = button.querySelector('img')?.alt || 'Foto do casal';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalImage.addEventListener('load', () => {
+      modalFallback.style.display = 'none';
+    });
+
+    modalImage.addEventListener('error', () => {
+      modalFallback.style.display = 'grid';
+    });
+
+    closeModal.addEventListener('click', closePhotoModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closePhotoModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closePhotoModal();
+      }
+    });
+
+    function closePhotoModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      modalImage.src = '';
+      modalFallback.style.display = 'grid';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.className = 'floating-heart';
+      heart.textContent = '❤';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.fontSize = `${Math.random() * 14 + 12}px`;
+      heart.style.animationDuration = `${Math.random() * 5 + 7}s`;
+      heart.style.setProperty('--drift', `${(Math.random() - 0.5) * 90}px`);
+      floatingHearts.appendChild(heart);
+      heart.addEventListener('animationend', () => heart.remove());
+    }
+
+    setInterval(createHeart, 1200);
+  </script>
 </body>
 </html>
